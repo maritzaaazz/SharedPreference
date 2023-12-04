@@ -34,4 +34,34 @@ class PrefManager private constructor(context: Context){
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn)
         editor.apply()
     }
+
+    fun isLoggedIn(): Boolean{
+        return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)
+    }
+
+    fun saveUsername(username: String){
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY_USERNAME, username)
+        editor.apply()
+    }
+
+    fun savePassword(password: String){
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY_PASSWORD, password)
+        editor.apply()
+    }
+
+    fun getUsername(): String {
+        return sharedPreferences.getString(KEY_USERNAME, "") ?: ""
+    }
+
+    fun getPassword(): String {
+        return sharedPreferences.getString(KEY_PASSWORD, "") ?: ""
+    }
+
+    fun clear(){
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+    }
 }
